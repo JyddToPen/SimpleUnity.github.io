@@ -3,9 +3,9 @@ using System.Collections;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
+using King;
 using UnityEngine;
 using UnityEngine.Networking;
-using WNGUI;
 
 namespace DefaultNamespace
 {
@@ -17,21 +17,22 @@ namespace DefaultNamespace
         public int errcode;
         public string errmsg;
     }
-    
+
     public class WXServer
     {
         public static readonly WXServer Instance = new WXServer();
-        
+
         /// <summary>
         /// 请求转换code
         /// </summary>
         /// <param name="code"></param>
         public void RequestCode2Session(string code)
         {
-            string code2SessionUrl = $"https://api.weixin.qq.com/sns/jscode2session?appid={WXSDKUtility.Instance.AppId}&secret={WXSDKUtility.Instance.AppSecret}&js_code={code}&grant_type=authorization_code";
+            string code2SessionUrl =
+                $"https://api.weixin.qq.com/sns/jscode2session?appid={WXSDKUtility.Instance.AppId}&secret={WXSDKUtility.Instance.AppSecret}&js_code={code}&grant_type=authorization_code";
             WxMain.Instance.StartCoroutine(OnCode2Session(code2SessionUrl));
         }
-        
+
         /// <summary>
         /// 转化code
         /// </summary>
@@ -61,12 +62,14 @@ namespace DefaultNamespace
                 code2SessionResult ??= new Code2SessionResult();
                 Debug.Log($"OnCode2Session success {content}");
             }
+
             if (code2SessionResult.errcode > 0)
             {
-                Debug.LogError($"OnCode2Session error, errcode:{code2SessionResult.errcode} errmsg:{code2SessionResult.errmsg}");
+                Debug.LogError(
+                    $"OnCode2Session error, errcode:{code2SessionResult.errcode} errmsg:{code2SessionResult.errmsg}");
             }
         }
-        
+
         /// <summary>
         /// 原生C#版
         /// </summary>
@@ -76,7 +79,8 @@ namespace DefaultNamespace
         {
             Code2SessionResult code2SessionResult = new Code2SessionResult();
             Debug.Log($"WXServer.AsyncCode2Session, code:{code}");
-            string code2SessionUrl = $"https://api.weixin.qq.com/sns/jscode2session?appid={WXSDKUtility.Instance.AppId}&secret={WXSDKUtility.Instance.AppSecret}&js_code={code}&grant_type=authorization_code";
+            string code2SessionUrl =
+                $"https://api.weixin.qq.com/sns/jscode2session?appid={WXSDKUtility.Instance.AppId}&secret={WXSDKUtility.Instance.AppSecret}&js_code={code}&grant_type=authorization_code";
             using (HttpClient httpClient = new HttpClient())
             {
                 try
@@ -85,7 +89,8 @@ namespace DefaultNamespace
                     code2SessionResult = JsonUtility.FromJson<Code2SessionResult>(content);
                     if (code2SessionResult.errcode > 0)
                     {
-                        Debug.LogError($"AsyncCode2Session error, code:{code} errcode:{code2SessionResult.errcode} errmsg:{code2SessionResult.errmsg}");
+                        Debug.LogError(
+                            $"AsyncCode2Session error, code:{code} errcode:{code2SessionResult.errcode} errmsg:{code2SessionResult.errmsg}");
                     }
                 }
                 catch (HttpRequestException ex)
@@ -93,6 +98,7 @@ namespace DefaultNamespace
                     Debug.LogError($"AsyncCode2Session error, url:{code2SessionUrl} e:{ex}");
                 }
             }
+
             return code2SessionResult;
         }
     }

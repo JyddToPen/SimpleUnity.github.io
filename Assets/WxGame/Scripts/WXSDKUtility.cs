@@ -1,10 +1,12 @@
 ﻿using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 using WeChatWASM;
 
-namespace WNGUI
+namespace King
 {
     public struct WxLoginData
     {
@@ -12,6 +14,7 @@ namespace WNGUI
         /// 标识码
         /// </summary>
         public string Code { get; set; }
+
         /// <summary>
         /// 微信用户信息
         /// </summary>
@@ -21,23 +24,37 @@ namespace WNGUI
     public class InternalData
     {
         public Button m_ButtonUGUIWeChat => WxMain.Instance.btnWxUserInfo;
-        
+
         public static implicit operator bool(InternalData outData)
         {
             return outData != null && outData.m_ButtonUGUIWeChat;
         }
     }
-    
+
     public class WXSDKUtility
     {
-
         public static WXSDKUtility Instance = new WXSDKUtility();
         private string _wxCode;
         public string WxCode => _wxCode;
-        
+
         //出于安全考虑，通过这个链接获取下，这里不再展示 https://mp.weixin.qq.com/
-        public readonly string AppId = "";
-        public readonly string AppSecret = "";
+        private string[] _wxIds;
+        private string[] WxIds
+        {
+            get
+            {
+                if (_wxIds == null)
+                {
+                    var ret = Regex.Match(File.ReadAllText(Application.dataPath + "/../Library/Wx.txt"), @"(\w+)\s(\w+)");
+                    _wxIds = new[] { ret.Groups[1].Value, ret.Groups[2].Value };
+                }
+                return _wxIds;
+            }
+        }
+
+        public string AppId => WxIds[0];
+        
+        public string AppSecret => WxIds[1];
 
         public event Action<WxLoginData> LoginResponseEvent;
 
@@ -47,7 +64,7 @@ namespace WNGUI
         {
             WX.InitSDK(OnSdkInitComplete);
         }
-        
+
         /// <summary>
         /// 初始化结束
         /// </summary>
@@ -64,6 +81,7 @@ namespace WNGUI
         }
 
         #region SDK登录
+
         /// <summary>
         /// sdk登录成功
         /// </summary>
@@ -79,18 +97,21 @@ namespace WNGUI
             };
             WX.GetSetting(getSettingOption);
         }
-        
+
         /// <summary>
         /// sdk登录失败
         /// </summary>
         /// <param name="requestFailCallbackErr"></param>
         private void OnSdkLoginFail(RequestFailCallbackErr requestFailCallbackErr)
         {
-            Debug.LogError($"WeiXinLogin.OnSdkLoginFail, code={requestFailCallbackErr.errno} msg={requestFailCallbackErr.errMsg}");
+            Debug.LogError(
+                $"WeiXinLogin.OnSdkLoginFail, code={requestFailCallbackErr.errno} msg={requestFailCallbackErr.errMsg}");
         }
+
         #endregion
 
         #region 获取设置信息
+
         /// <summary>
         /// 获取玩家配置成功
         /// </summary>
@@ -107,8 +128,9 @@ namespace WNGUI
                     return;
                 }
 
-                (Vector2 wxPosition,Vector2 size) =
-                    GetUIWxScreenPosition(_view.m_ButtonUGUIWeChat.gameObject,_view.m_ButtonUGUIWeChat.gameObject.GetComponentInParent<Canvas>());
+                (Vector2 wxPosition, Vector2 size) =
+                    GetUIWxScreenPosition(_view.m_ButtonUGUIWeChat.gameObject,
+                        _view.m_ButtonUGUIWeChat.gameObject.GetComponentInParent<Canvas>());
                 Debug.Log(
                     $"WeiXinLogin.GetSettingSuccess create a visible button to simulate login");
                 WXUserInfoButton wxUserInfoButton =
@@ -128,6 +150,7 @@ namespace WNGUI
                         Debug.Log(
                             $"WeiXinLogin.GetSettingSuccess user refuses authorisation!");
                     }
+
                     wxUserInfoButton.Hide();
                     if (_view)
                     {
@@ -149,7 +172,7 @@ namespace WNGUI
                 WX.GetUserInfo(getUserInfoOption);
             }
         }
-        
+
         /// <summary>
         /// 获取设置失败
         /// </summary>
@@ -158,6 +181,7 @@ namespace WNGUI
         {
             Debug.LogError($"WeiXinLogin.GetSettingFail, {result.errMsg}");
         }
+
         #endregion
 
 
@@ -190,6 +214,7 @@ namespace WNGUI
         }
 
         #region 获取用户信息
+
         /// <summary>
         /// 获取玩家信息成功回调
         /// </summary>
@@ -204,7 +229,7 @@ namespace WNGUI
             };
             OnResponseUserInfo(wxUserInfo);
         }
-        
+
         /// <summary>
         /// 获取用户信息失败
         /// </summary>
@@ -213,6 +238,7 @@ namespace WNGUI
         {
             Debug.LogError($"WeiXinLogin.GetUserInfoFail, {data.errMsg}");
         }
+
         #endregion
 
         /// <summary>
@@ -221,7 +247,8 @@ namespace WNGUI
         /// <param name="wxUserInfo"></param>
         private void OnResponseUserInfo(WXUserInfo wxUserInfo)
         {
-            Debug.Log($"OnResponseUserInfo 用户名：{wxUserInfo.nickName} 用户头像{wxUserInfo.avatarUrl} LoginResponseEvent:{LoginResponseEvent}");
+            Debug.Log(
+                $"OnResponseUserInfo 用户名：{wxUserInfo.nickName} 用户头像{wxUserInfo.avatarUrl} LoginResponseEvent:{LoginResponseEvent}");
             LoginResponseEvent?.Invoke(new WxLoginData()
             {
                 Code = _wxCode,
