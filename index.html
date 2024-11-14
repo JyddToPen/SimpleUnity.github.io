@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Text Content Fetcher</title>
+  <script>
+    // Function to get query parameters from the URL
+    function getQueryParams() {
+      const params = new URLSearchParams(window.location.search);
+      return Object.fromEntries(params.entries());
+    }
+
+    // Function to display content based on query parameter
+    function displayContent() {
+      const params = getQueryParams();
+      const outputDiv = document.getElementById("output");
+
+      // Check for specific parameter, e.g., "message"
+      if (params.message) {
+        outputDiv.textContent = `You requested: ${params.message}`;
+      } else {
+        outputDiv.textContent = "No message parameter provided in the URL.";
+      }
+    }
+
+    // Run displayContent on page load
+    window.onload = displayContent;
+  </script>
+</head>
+<body>
+  <h1>Welcome to My GitHub Pages Site</h1>
+  <div id="output"></div>
+  <p>To fetch content, try adding <code>?message=YourMessage</code> to the URL.</p>
+</body>
+</html>
