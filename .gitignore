@@ -74,16 +74,9 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # unity
-/webgl
 /TextToolDatas
 /minigame
 /Bundles
 /Assets/Samples/
 /Assets/StreamingAssets/
 /Assets/StreamingAssets.meta
-/Assets/WebGLSupport/
-/Assets/WebGLSupport.meta
-/Assets/WebGLTemplates/
-/Assets/WebGLTemplates.meta
-/Assets/WX-WASM-SDK-V2/
-/Assets/WX-WASM-SDK-V2.meta
