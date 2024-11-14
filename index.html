@@ -3,33 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Text Content Fetcher</title>
+  <title>Username Response</title>
   <script>
-    // Function to get query parameters from the URL
-    function getQueryParams() {
+    function displayUsername() {
       const params = new URLSearchParams(window.location.search);
-      return Object.fromEntries(params.entries());
-    }
-
-    // Function to display content based on query parameter
-    function displayContent() {
-      const params = getQueryParams();
       const outputDiv = document.getElementById("output");
 
-      // Check for specific parameter, e.g., "message"
-      if (params.message) {
-        outputDiv.textContent = `You requested: ${params.message}`;
+      // Check if 'message' parameter is present
+      if (params.has("message")) {
+        // You can replace "king" with any username logic you want
+        outputDiv.textContent = "king"; 
       } else {
-        outputDiv.textContent = "No message parameter provided in the URL.";
+        outputDiv.textContent = "No valid message parameter found.";
       }
     }
 
-    // Run displayContent on page load
-    window.onload = displayContent;
+    window.onload = displayUsername;
   </script>
 </head>
 <body>
-  <h1>Welcome to JyddWeb</h1>
+  <!-- The div will display only the username as plain text -->
   <div id="output"></div>
 </body>
 </html>
