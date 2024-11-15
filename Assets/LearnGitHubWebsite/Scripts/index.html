@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Username Response</title>
+    <script>
+        function displayUsername() {
+            const params = new URLSearchParams(window.location.search);
+            const outputDiv = document.getElementById("output");
+
+            // Check if 'message' parameter is present
+            if (params.has("message")) {
+                // You can replace "king" with any username logic you want
+                outputDiv.textContent = "king";
+            } else {
+                outputDiv.textContent = "No valid message parameter found.";
+            }
+        }
+
+        window.onload = displayUsername;
+    </script>
+</head>
+<body>
+<!-- The div will display only the username as plain text -->
+<div id="output"></div>
+</body>
+</html>

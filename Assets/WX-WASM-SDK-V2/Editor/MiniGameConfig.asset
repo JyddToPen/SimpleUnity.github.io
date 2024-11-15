@@ -15,9 +15,9 @@ MonoBehaviour:
   ProjectConf:
     projectName: SimleGame
     Appid: wx1ddcbbc7dcef04f9
-    CDN: https://raw.githubusercontent.com/JyddToPen/SimpleUnity/refs/heads/main/webgl
+    CDN: https://raw.githubusercontent.com/JyddToPen/SimpleUnity.github.io/refs/heads/main/webgl
     assetLoadType: 0
-    compressDataPackage: 0
+    compressDataPackage: 1
     VideoUrl: 
     DST: G:\Learn\SimpleUnity\
     StreamCDN: 
@@ -52,7 +52,7 @@ MonoBehaviour:
     Il2CppOptimizeSize: 1
     profilingFuncs: 1
     Webgl2: 0
-    fbslim: 0
+    fbslim: 1
     DeleteStreamingAssets: 1
     ProfilingMemory: 0
     CleanBuild: 0
