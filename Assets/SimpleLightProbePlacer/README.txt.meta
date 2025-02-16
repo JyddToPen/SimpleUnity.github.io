@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 72e3022953f5a3b4e868027c1ebc36ef
+timeCreated: 1468068060
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 58290
+  packageName: Simple Light Probe Placer
+  packageVersion: 1.0.11
+  assetPath: Assets/SimpleLightProbePlacer/README.txt
+  uploadId: 193448

@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: ed7bb5f68f00e944da65fd411da6fd53
+timeCreated: 1457260999
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 58290
+  packageName: Simple Light Probe Placer
+  packageVersion: 1.0.11
+  assetPath: Assets/SimpleLightProbePlacer/Editor/LightProbeVolumeEditor.cs
+  uploadId: 193448

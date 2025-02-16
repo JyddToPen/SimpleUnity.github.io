@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: d839bef4d4110b244bf82bcec581a66d
+timeCreated: 1457258829
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 58290
+  packageName: Simple Light Probe Placer
+  packageVersion: 1.0.11
+  assetPath: Assets/SimpleLightProbePlacer/Scripts/TransformVolume.cs
+  uploadId: 193448
