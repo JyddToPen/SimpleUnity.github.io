@@ -18,7 +18,7 @@ const unityNamespace = {
     unityVersion: '2022.3.4f1',
     // Color Space: Gamma、Linear、Uninitialized(未初始化的颜色空间)
     unityColorSpace: 'Gamma',
-    convertPluginVersion: '202410210239',
+    convertPluginVersion: '202501140351',
     // 拼在StreamingAssets前面的path，DATA_CDN + streamingUrlPrefixPath + StreamingAssets
     streamingUrlPrefixPath: '',
     // DATA_CDN + dataFileSubPrefix + datafilename
@@ -50,7 +50,7 @@ const unityNamespace = {
     // 是否用了多线程brotli压缩
     useBrotliMT: true,
     // Boot config配置，包含例如wait-for-native-debugger、player-connection-ip等信息
-    bootConfig: 'player-connection-ip=10.10.16.2',
+    bootConfig: 'player-connection-ip=10.10.16.76',
     // 是否以Development Build构建
     isDevelopmentBuild: false,
     // 是否以Profiling Build导出
@@ -165,15 +165,15 @@ function bindGloblException() {
         GameGlobal.logmanager.info('game starting', bootinfo);
         console.info('game starting', bootinfo);
     }
-    const appBaseInfo = wx.getAppBaseInfo();
-    const deviceInfo = wx.getDeviceInfo();
+    const appBaseInfo = wx.getAppBaseInfo ? wx.getAppBaseInfo() : wx.getSystemInfoSync();
+    const deviceInfo = wx.getDeviceInfo ? wx.getDeviceInfo() : wx.getSystemInfoSync();
     printSystemInfo(appBaseInfo, deviceInfo);
 }
 bindGloblException();
 // eslint-disable-next-line no-multi-assign
 GameGlobal.onCrash = GameGlobal.unityNamespace.onCrash = function () {
     GameGlobal.manager.showAbort();
-    const windowInfo = wx.getWindowInfo();
+    const windowInfo = wx.getWindowInfo ? wx.getWindowInfo() : wx.getSystemInfoSync();
     wx.createFeedbackButton({
         type: 'text',
         text: '提交反馈',

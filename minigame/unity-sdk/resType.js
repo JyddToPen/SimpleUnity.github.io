@@ -571,6 +571,7 @@ export const ResType = {
         hasSystemProxy: 'bool',
         networkType: 'string',
         signalStrength: 'number',
+        weakNet: 'bool',
         errMsg: 'string',
     },
     GetPrivacySettingSuccessCallbackResult: {
@@ -927,9 +928,6 @@ export const ResType = {
     RequestSubscribeSystemMessageSuccessCallbackResult: {
         anyKeyWord: 'string',
         errMsg: 'string',
-    },
-    ReserveChannelsLiveOption: {
-        noticeId: 'string',
     },
     ScanCodeSuccessCallbackResult: {
         charSet: 'string',

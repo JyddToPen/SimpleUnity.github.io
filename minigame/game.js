@@ -10,13 +10,13 @@ import checkVersion from './check-version';
 import { launchEventType, scaleMode } from './plugin-config';
 import { preloadWxCommonFont } from './unity-sdk/font/index';
 const managerConfig = {
-    DATA_FILE_MD5: '79024b080b53f628',
-    CODE_FILE_MD5: '44984995f94bc516',
+    DATA_FILE_MD5: '6506e15a9f1f90c5',
+    CODE_FILE_MD5: '74cd3a4f300c39d8',
     GAME_NAME: 'webgl',
     APPID: 'wx1ddcbbc7dcef04f9',
-    DATA_FILE_SIZE: '4690181',
+    DATA_FILE_SIZE: '6323366',
     OPT_DATA_FILE_SIZE: '$OPT_DATA_FILE_SIZE',
-    DATA_CDN: 'https://raw.githubusercontent.com/JyddToPen/SimpleUnity.github.io/refs/heads/main/webgl',
+    DATA_CDN: 'http://192.168.1.212/ZombieFish/SimpleGame/Wx',
     // 资源包是否作为小游戏分包加载
     loadDataPackageFromSubpackage: false,
     // 资源包放小游戏分包加载时，是否br压缩
@@ -28,7 +28,7 @@ const managerConfig = {
         ,
     ],
     contextConfig: {
-        contextType: 1, // 1: webgl1  2: webgl2
+        contextType: 2, // 1: webgl1  2: webgl2
     },
     PROFILER_UPLOAD_URL: '',
 };
