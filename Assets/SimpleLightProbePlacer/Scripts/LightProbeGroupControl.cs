@@ -31,7 +31,9 @@ namespace SimpleLightProbePlacer
 
         public void DeleteAll()
         {
+#if UNITY_EDITOR
             LightProbeGroup.probePositions = null;
+#endif
             m_mergedProbes = 0;
         }
 
@@ -58,7 +60,9 @@ namespace SimpleLightProbePlacer
 
         private void ApplyPositions(List<Vector3> positions)
         {
+#if UNITY_EDITOR
             LightProbeGroup.probePositions = positions.Select(x => transform.InverseTransformPoint(x)).ToArray();
+#endif
         }
 
         private static List<Vector3> CreatePositions()
