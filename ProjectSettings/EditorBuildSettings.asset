@@ -6,10 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/UnityTechnologies/Basic Asset Pack Interior/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
     path: Assets/LearnWxGame/Scenes/WxScene.unity
     guid: 784b7a7407c8e6640b7efc82cd7089e1
   m_configObjects: {}
-  m_UseUCBPForAssetBundles: 0

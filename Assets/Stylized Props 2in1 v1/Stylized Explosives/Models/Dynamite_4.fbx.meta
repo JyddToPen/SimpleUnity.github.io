@@ -53,7 +53,7 @@ ModelImporter:
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
-    generateSecondaryUV: 0
+    generateSecondaryUV: 1
     useFileUnits: 1
     keepQuads: 0
     weldVertices: 1
@@ -112,10 +112,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 290116
-  packageName: Stylized Props 2in1 AAA v1 - URP
-  packageVersion: 1.0
-  assetPath: Assets/Stylized Props 2in1 v1/Stylized Explosives/Models/Dynamite_4.fbx
-  uploadId: 677919
