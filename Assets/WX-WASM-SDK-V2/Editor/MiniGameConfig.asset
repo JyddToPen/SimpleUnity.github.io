@@ -16,7 +16,7 @@ MonoBehaviour:
     projectName: SimleGame
     Appid: wx1ddcbbc7dcef04f9
     CDN: https://raw.githubusercontent.com/JyddToPen/SimpleUnity.github.io/refs/heads/main/webgl
-    assetLoadType: 0
+    assetLoadType: 1
     compressDataPackage: 1
     VideoUrl: 
     DST: G:\Learn\SimpleUnity\
@@ -46,7 +46,7 @@ MonoBehaviour:
     UseMiniGameChat: 0
     PreloadWXFont: 0
   CompileOptions:
-    DevelopBuild: 0
+    DevelopBuild: 1
     AutoProfile: 0
     ScriptOnly: 0
     Il2CppOptimizeSize: 1
@@ -61,7 +61,7 @@ MonoBehaviour:
     showMonitorSuggestModal: 1
     enableProfileStats: 0
     enableRenderAnalysis: 0
-    enablePerfAnalysis: 0
+    enablePerfAnalysis: 1
     iOSAutoGCInterval: 10000
     enableIOSPerformancePlus: 0
     brotliMT: 1

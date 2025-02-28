@@ -1,0 +1,20 @@
+{
+    "name": "BuildModule.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7b187a15f5e8e244c9fbb905c243974b",
+        "GUID:5efd170ecd8084500bed5692932fe14e",
+        "GUID:eb6ae48726f0b434e9d6ea7d36a67545"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
