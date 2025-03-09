@@ -1,3 +1,4 @@
 {
-	"name": "BuildModule.Runtime"
+	"name": "BuildModule.Runtime",
+	"references":[ "GUID:a7db6824637c4c83a58d2f3b83c82cc7" ]
 }

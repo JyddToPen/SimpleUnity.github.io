@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEditor;
@@ -30,7 +31,7 @@ namespace BuildModule.Scripts.Editor
             _platformBuild = new WxBuild();
             _platformBuild.HandleBuild(BuildOptions.None);
         }
-        
+
         [MenuItem("Assets/Build/WeChat-Develop")]
         private static void BuildWeChatDevelop()
         {
@@ -44,65 +45,15 @@ namespace BuildModule.Scripts.Editor
             _platformBuild = new StandaloneBuild();
             _platformBuild.HandleBuild(BuildOptions.AutoRunPlayer);
         }
-        
+
         [MenuItem("Assets/Build/Standalone-Develop")]
         private static void BuildStandaloneDevelop()
         {
             _platformBuild = new StandaloneBuild();
-            _platformBuild.HandleBuild(BuildOptions.Development | BuildOptions.AutoRunPlayer | BuildOptions.ConnectWithProfiler);
+            _platformBuild.HandleBuild(BuildOptions.Development | BuildOptions.AutoRunPlayer |
+                                       BuildOptions.ConnectWithProfiler);
         }
-
-        [MenuItem("Assets/Build/AssetBundle")]
-        private static void BuildAssetBundle()
-        {
-            string selectAsset = AssetDatabase.GetAssetPath(Selection.activeObject);
-            if (!selectAsset.StartsWith("Assets/"))
-            {
-                Debug.LogError("选择一个Assets目录下的文件!");
-                return;
-            }
-
-            string rootFolder = Regex.Match(selectAsset, @"^Assets/(Resources/(?<root>\w+)|(?<root>\w+))")
-                .Groups["root"].Value;
-            if (string.IsNullOrEmpty(rootFolder))
-            {
-                Debug.LogError("选择的文件没有根目录!");
-                return;
-            }
-
-            string outputPath = $"{Application.streamingAssetsPath}/{rootFolder}";
-            if (!Directory.Exists(outputPath))
-            {
-                Directory.CreateDirectory(outputPath);
-            }
-
-            string[] assetNames = new[] { selectAsset };
-
-            if (AssetDatabase.IsValidFolder(selectAsset))
-            {
-                assetNames = AssetDatabase.FindAssets("*", new[] { selectAsset }).Select(AssetDatabase.GUIDToAssetPath)
-                    .ToArray();
-            }
-
-            var result = BuildPipeline.BuildAssetBundles(outputPath, new[]
-            {
-                new AssetBundleBuild()
-                {
-                    assetBundleName = $"{rootFolder.ToLower()}.assetbundle",
-                    assetNames = assetNames,
-                }
-            }, BuildAssetBundleOptions.ChunkBasedCompression, EditorUserBuildSettings.activeBuildTarget);
-            if (result)
-            {
-                Debug.Log("Build AssetBundle succeeded!!!");
-                AssetDatabase.Refresh();
-            }
-            else
-            {
-                Debug.LogError("Build AssetBundle failed!!!");
-            }
-        }
-
+        
         /// <summary>
         /// κϢ
         /// </summary>

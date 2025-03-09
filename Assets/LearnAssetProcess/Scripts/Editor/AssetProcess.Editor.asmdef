@@ -1,11 +1,10 @@
 {
-    "name": "LearnLightMap.Runtime",
+    "name": "AssetProcess.Editor",
     "rootNamespace": "",
-    "references": [
-        "GUID:15fc0a57446b3144c949da3e2b9737a9",
-        "GUID:7b187a15f5e8e244c9fbb905c243974b"
+    "references": [],
+    "includePlatforms": [
+        "Editor"
     ],
-    "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
     "overrideReferences": false,

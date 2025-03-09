@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using BuildModule.Scripts.Runtime.AssetManager;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -14,13 +15,18 @@ namespace LearnLightMap.Scripts.Runtime
             Object.FindObjectOfType<Light>().enabled = false;
         }
 
-        void Start()
+        IEnumerator Start()
         {
-            GameObject bakedArch = Resources.Load<GameObject>("LearnLightMap/Arch");
-            if (!bakedArch) return;
+            AssetLoadResult<GameObject> assetLoadResult = new AssetLoadResult<GameObject>();
+            yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("LearnLightMap",
+                "assets.resources.learnlightmap.assetbundle", "Arch", assetLoadResult);
+            GameObject bakedArch = assetLoadResult.AssetObject;
+            if (!bakedArch) yield break;
             RecoveryLightMap(bakedArch.GetComponent<LightMapRecord>());
             GameObject bakedArchIns = GameObject.Instantiate<GameObject>(bakedArch);
-            GameObject realLightArch = Resources.Load<GameObject>("LearnLightMap/ArchLitRealLight");
+            yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("LearnLightMap",
+                "assets.resources.learnlightmap.assetbundle", "ArchLitRealLight", assetLoadResult);
+            GameObject realLightArch = assetLoadResult.AssetObject;
             if (realLightArch)
             {
                 GameObject.Instantiate<GameObject>(realLightArch);
@@ -56,7 +62,9 @@ namespace LearnLightMap.Scripts.Runtime
                 Debug.Log($"lightmapData lightmapColor:{lightmapData.lightmapColor}");
             }
 #if UNITY_EDITOR
-            // UnityEditor.Lightmapping.lightingDataAsset = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.LightingDataAsset>("Assets/Resources/LearnLightMap/Tex/LightingData.asset");
+            UnityEditor.Lightmapping.lightingDataAsset =
+                UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.LightingDataAsset>(
+                    "Assets/Resources/LearnLightMap/Tex/LightingData.asset");
 #endif
         }
     }
