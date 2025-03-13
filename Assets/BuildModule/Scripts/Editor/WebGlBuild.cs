@@ -28,14 +28,13 @@ namespace BuildModule.Scripts.Editor
             }
 
             LocalCdnPhysicalPath = LocalCdnPhysicalPath.Replace("/", "\\");
-            File.Copy($"{Application.dataPath}/BuildModule/web.config", $"{outputPath}/web.config");
+            File.Copy($"{Application.dataPath}/../web.config", $"{outputPath}/web.config",true);
             BuildEditor.StartBatMulLineInput(new[]
             {
                 //安全起见，这里只做覆盖操作，防止出现意外
                 //$"if exist {LocalCdnPhysicalPath} rd /s /q {LocalCdnPhysicalPath}",
                 $"echo d|xcopy /s /y /q {outputPath.Replace("/", "\\")} {LocalCdnPhysicalPath}",
             });
-            Application.OpenURL(LocalCdnRemotePath);
             Debug.Log($"webGl构建的data资源已经上传至共享盘！访问地址:{LocalCdnRemotePath}");
         }
     }

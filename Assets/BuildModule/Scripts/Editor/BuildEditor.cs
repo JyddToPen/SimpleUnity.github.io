@@ -22,7 +22,7 @@ namespace BuildModule.Scripts.Editor
         private static void BuildWebGLDevelop()
         {
             _platformBuild = new WebGlBuild();
-            _platformBuild.HandleBuild(BuildOptions.Development);
+            _platformBuild.HandleBuild(BuildOptions.Development | BuildOptions.AutoRunPlayer | BuildOptions.ConnectWithProfiler);
         }
 
         [MenuItem("Assets/Build/WeChat")]
@@ -50,8 +50,7 @@ namespace BuildModule.Scripts.Editor
         private static void BuildStandaloneDevelop()
         {
             _platformBuild = new StandaloneBuild();
-            _platformBuild.HandleBuild(BuildOptions.Development | BuildOptions.AutoRunPlayer |
-                                       BuildOptions.ConnectWithProfiler);
+            _platformBuild.HandleBuild(BuildOptions.Development | BuildOptions.AutoRunPlayer);
         }
         
         /// <summary>
@@ -61,35 +60,33 @@ namespace BuildModule.Scripts.Editor
         public static string StartBatMulLineInput(string[] inputCommand)
         {
             string outString = "";
-            using (System.Diagnostics.Process process = new System.Diagnostics.Process())
+            using System.Diagnostics.Process process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = "cmd.exe";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardError = true;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.StartInfo.RedirectStandardInput = true;
+            process.StartInfo.CreateNoWindow = true;
+            process.ErrorDataReceived += (o, message) =>
             {
-                process.StartInfo.FileName = "cmd.exe";
-                process.StartInfo.UseShellExecute = false;
-                process.StartInfo.RedirectStandardError = true;
-                process.StartInfo.RedirectStandardOutput = true;
-                process.StartInfo.RedirectStandardInput = true;
-                process.StartInfo.CreateNoWindow = true;
-                process.ErrorDataReceived += (o, message) =>
+                if (!string.IsNullOrEmpty(message.Data)) UnityEngine.Debug.LogError(message.Data);
+            };
+            process.Start();
+            process.BeginErrorReadLine();
+            process.StandardInput.AutoFlush = true;
+            if (inputCommand != null)
+            {
+                foreach (var command in inputCommand)
                 {
-                    if (string.IsNullOrEmpty(message.Data)) UnityEngine.Debug.LogError(message.Data);
-                };
-                process.Start();
-                process.BeginErrorReadLine();
-                process.StandardInput.AutoFlush = true;
-                if (inputCommand != null)
-                {
-                    foreach (var command in inputCommand)
-                    {
-                        UnityEngine.Debug.Log(command);
-                        process.StandardInput.WriteLine(command);
-                    }
+                    UnityEngine.Debug.Log(command);
+                    process.StandardInput.WriteLine(command);
                 }
-
-                process.StandardInput.WriteLine("exit");
-                outString = process.StandardOutput.ReadToEnd();
-                process.WaitForExit();
-                process.Close();
             }
+
+            process.StandardInput.WriteLine("exit");
+            outString = process.StandardOutput.ReadToEnd();
+            process.WaitForExit();
+            process.Close();
 
             return outString;
         }

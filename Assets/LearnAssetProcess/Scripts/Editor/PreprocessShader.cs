@@ -26,13 +26,13 @@ namespace LearnAssetProcess.Scripts.Editor
                     // Debug.Log($"PreprocessShader shader:{shader} passName:{snippet.passName} passType:{snippet.passType} foundKeywordSet:{foundKeywordSet} i:{i} count:{data.Count}");
                 }
 
-                Debug.Log(
-                    $"PreprocessShader shader:{shader} passName:{snippet.passName} passType:{snippet.passType} count:{data.Count}");
+                // Debug.Log(
+                    // $"PreprocessShader shader:{shader} passName:{snippet.passName} passType:{snippet.passType} count:{data.Count}");
             }
             else
             {
-                Debug.Log(
-                    $"PreprocessShader shader:{shader}  passName:{snippet.passName}  passType:{snippet.passType} no Keyword set");
+                // Debug.Log(
+                    // $"PreprocessShader shader:{shader}  passName:{snippet.passName}  passType:{snippet.passType} no Keyword set");
             }
         }
     }

@@ -1,0 +1,17 @@
+{
+    "name": "LearnShader.Editor",
+    "rootNamespace": "",
+    "references": [
+    "GUID:c2a8dd9021c649e3b6b82de302da0d43"],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

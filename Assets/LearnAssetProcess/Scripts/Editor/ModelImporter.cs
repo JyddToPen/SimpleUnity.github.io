@@ -12,19 +12,19 @@ namespace LearnAssetProcess.Scripts.Editor
         {
             foreach (var importedAsset in importedAssets)
             {
-                Debug.Log($"OnPostprocessAllAssets {importedAsset}--{AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(importedAsset)}");
+                // Debug.Log($"OnPostprocessAllAssets {importedAsset}--{AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(importedAsset)}");
             }
         }
 
         private void OnPreprocessAsset()
         {
-            Debug.Log($"OnPreprocessAsset {assetPath}--{AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath)}");
+            // Debug.Log($"OnPreprocessAsset {assetPath}--{AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(assetPath)}");
         }
 
 
         private void OnPostprocessModel(GameObject g)
         {
-            Debug.Log($"OnPostprocessModel {g}");
+            // Debug.Log($"OnPostprocessModel {g}");
         }
     }
 }
