@@ -80,4 +80,5 @@ crashlytics-build.properties
 /Assets/StreamingAssets/
 /Assets/StreamingAssets.meta
 /Assets/Resources/BuildModule/EnvConfig.asset
+/Assets/Resources/BuildModule/EnvConfig.asset.meta
 /Player2Standalone/
