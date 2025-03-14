@@ -1,3 +1,4 @@
 {
-	"name": "LearnShader.Runtime"
+	"name": "LearnShader.Runtime",
+	"references":[ "GUID:7b187a15f5e8e244c9fbb905c243974b" ]
 }

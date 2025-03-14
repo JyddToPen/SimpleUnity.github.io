@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using BaseLib.Scripts.Runtime;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -88,7 +89,8 @@ namespace BuildModule.Scripts.Runtime.AssetManager
                 yield break;
             }
 
-
+            assetBundleName = assetBundleName.ToLower();
+            rootFolder = rootFolder.ToLower();
             MonoUtility.Instance.UpdateLoopEvent -= LoadFileLoop;
             MonoUtility.Instance.UpdateLoopEvent += LoadFileLoop;
 
@@ -112,9 +114,16 @@ namespace BuildModule.Scripts.Runtime.AssetManager
             var result = request.AssetBundle.LoadAssetAsync<T>(assetName);
             yield return result;
             assetLoadResult.AssetObject = result.asset as T;
-            if (assetLoadResult.AssetObject) yield break;
-            Debug.LogError(
-                $"AssetBundleLoad.AsyLoadAsset error, read Asset error, rootFolder:{rootFolder}  assetBundleName:{assetBundleName} assetName:{assetName}!");
+            if (assetLoadResult.AssetObject)
+            {
+                Debug.Log(
+                    $"AssetBundleLoad.AsyLoadAsset success, rootFolder:{rootFolder} assetBundleName:{assetBundleName} assetName:{assetName}!");
+            }
+            else
+            {
+                Debug.LogError(
+                    $"AssetBundleLoad.AsyLoadAsset error, read Asset error, rootFolder:{rootFolder}  assetBundleName:{assetBundleName} assetName:{assetName}!");
+            }
         }
 
         /// <summary>
@@ -255,7 +264,20 @@ namespace BuildModule.Scripts.Runtime.AssetManager
         private IEnumerator LoadSingleAssetBundle(string rootFolder, string assetBundleName)
         {
             if (IsLoadComplete(assetBundleName)) yield break;
-            var abFullUrl = $"{Application.streamingAssetsPath}/{rootFolder}/{assetBundleName}";
+            string targetName = "";
+#if UNITY_EDITOR
+            targetName = UnityEditor.EditorUserBuildSettings.selectedBuildTargetGroup.ToString();
+#else
+            EnvConfig.Instance.RuntimePlatformMaps.TryGetValue(Application.platform, out targetName);
+#endif
+            if (string.IsNullOrEmpty(targetName))
+            {
+                Debug.LogError(
+                    $"AssetBundleLoad.LoadSingleAssetBundle read error:targetName related of {Application.platform} is null!");
+                yield break;
+            }
+
+            var abFullUrl = $"{Application.streamingAssetsPath}/{targetName}/{rootFolder}/{assetBundleName}";
             var unityWebRequest = UnityWebRequest.Get(abFullUrl);
             yield return unityWebRequest.SendWebRequest();
             if (unityWebRequest.result != UnityWebRequest.Result.Success)
