@@ -1,4 +1,5 @@
 ﻿using System.IO;
+using BaseLib.Scripts.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -20,7 +21,7 @@ namespace BuildModule.Scripts.Editor
         /// <summary>
         /// 导出后
         /// </summary>
-        protected override void PostBuild(string outputPath)
+        protected override void PostBuild(string outputPath, string[] bootScenes)
         {
             if (!IsPreferLocalCdn)
             {
@@ -28,13 +29,8 @@ namespace BuildModule.Scripts.Editor
             }
 
             LocalCdnPhysicalPath = LocalCdnPhysicalPath.Replace("/", "\\");
-            File.Copy($"{Application.dataPath}/../web.config", $"{outputPath}/web.config",true);
-            BuildEditor.StartBatMulLineInput(new[]
-            {
-                //安全起见，这里只做覆盖操作，防止出现意外
-                //$"if exist {LocalCdnPhysicalPath} rd /s /q {LocalCdnPhysicalPath}",
-                $"echo d|xcopy /s /y /q {outputPath.Replace("/", "\\")} {LocalCdnPhysicalPath}",
-            });
+            File.Copy($"{Application.dataPath}/../web.config", $"{outputPath}/web.config", true);
+            FileUtility.CopyFolder(outputPath, LocalCdnPhysicalPath);
             Debug.Log($"webGl构建的data资源已经上传至共享盘！访问地址:{LocalCdnRemotePath}");
         }
     }

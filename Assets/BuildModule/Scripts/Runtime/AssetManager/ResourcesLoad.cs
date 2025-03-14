@@ -37,12 +37,20 @@ namespace BuildModule.Scripts.Runtime.AssetManager
                     $"ResourcesLoad.AsyLoadAsset error resourcesFolder is empty, rootFolder:{rootFolder} assetBundleName:{assetBundleName} assetName:{assetName}!");
                 yield break;
             }
+
             var result = Resources.LoadAsync<T>($"{resourcesFolder}/{assetName}");
             yield return result;
             assetLoadResult.AssetObject = result.asset as T;
-            if (assetLoadResult.AssetObject) yield break;
-            Debug.LogError(
-                $"ResourcesLoad.LoadManifest read asset error, rootFolder:{rootFolder} assetBundleName:{assetBundleName} assetName:{assetName}!");
+            if (assetLoadResult.AssetObject)
+            {
+                Debug.Log(
+                    $"ResourcesLoad.LoadManifest read asset success, rootFolder:{rootFolder} assetBundleName:{assetBundleName} assetName:{assetName}!");
+            }
+            else
+            {
+                Debug.LogError(
+                    $"ResourcesLoad.LoadManifest read asset error, rootFolder:{rootFolder} assetBundleName:{assetBundleName} assetName:{assetName}!");
+            }
         }
     }
 }

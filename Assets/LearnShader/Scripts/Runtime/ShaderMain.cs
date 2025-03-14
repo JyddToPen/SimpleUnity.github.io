@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using BuildModule.Scripts.Runtime.AssetManager;
 using UnityEngine;
 using UnityEngine.Rendering;
 using Object = UnityEngine.Object;
@@ -14,9 +16,12 @@ namespace LearnShader.Scripts.Runtime
         private const string StandardShader = "Standard";
         private const string StandardSpecularShader = "Standard (Specular setup)";
 
-        private void Awake()
+        private IEnumerator Start()
         {
-            GameObject sphere = Resources.Load<GameObject>("LearnShader/Sphere");
+            AssetLoadResult<GameObject> assetLoadResult = new AssetLoadResult<GameObject>();
+            yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("LearnShader",
+                "assets.resources.LearnShader.assetbundle", "Sphere", assetLoadResult);
+            GameObject sphere = assetLoadResult.AssetObject;
             var sphereIns = GameObject.Instantiate(sphere);
             sphereIns.name = sphere.name;
             ReplaceRegularShader(UrpLitShader, GraphicsSettings.renderPipelineAsset);

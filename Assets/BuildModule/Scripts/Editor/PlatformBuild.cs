@@ -37,16 +37,17 @@ namespace BuildModule.Scripts.Editor
         /// <summary>
         /// 执行打包
         /// </summary>
-        public void HandleBuild(BuildOptions buildOptions)
+        public void HandleBuild(BuildOptions buildOptions, string[] bootScenes)
         {
-            PreBuild();
-            OnProcessBuild(buildOptions);
+            EditorGUILayout.EndHorizontal();
+            PreBuild(buildOptions, bootScenes);
+            OnProcessBuild(buildOptions, bootScenes);
         }
 
         /// <summary>
         /// 预处理
         /// </summary>
-        protected virtual void PreBuild()
+        protected virtual void PreBuild(BuildOptions buildOptions, string[] bootScenes)
         {
             PlayerSettings.SetScriptingDefineSymbols(
                 NamedBuildTarget.FromBuildTargetGroup(EditorUserBuildSettings.selectedBuildTargetGroup), "");
@@ -92,26 +93,16 @@ namespace BuildModule.Scripts.Editor
         /// <summary>
         /// 处理构建
         /// </summary>
-        protected virtual void OnProcessBuild(BuildOptions buildOptions)
+        protected virtual void OnProcessBuild(BuildOptions buildOptions, string[] bootScenes)
         {
-            string selectScene = string.Empty;
-            if (Selection.activeObject)
-            {
-                string assetPath = AssetDatabase.GetAssetPath(Selection.activeObject);
-                if (assetPath.StartsWith("Assets/") && assetPath.EndsWith(".unity"))
-                {
-                    selectScene = assetPath;
-                }
-            }
-
-            if (string.IsNullOrEmpty(selectScene))
+            if (bootScenes is not { Length: > 0 })
             {
                 throw new Exception("请选择一个构建用的启动场景文件！！！");
             }
 
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
             {
-                scenes = new[] { selectScene },
+                scenes = bootScenes,
                 locationPathName = Application.dataPath + $"/../{TargetFolder}",
                 target = EditorUserBuildSettings.activeBuildTarget,
                 options = buildOptions,
@@ -123,7 +114,7 @@ namespace BuildModule.Scripts.Editor
             if (summary.result == BuildResult.Succeeded)
             {
                 Debug.Log("Build succeeded: " + summary.totalSize + " bytes！！");
-                PostBuild(summary.outputPath);
+                PostBuild(summary.outputPath, bootScenes);
             }
 
             if (summary.result == BuildResult.Failed)
@@ -135,7 +126,7 @@ namespace BuildModule.Scripts.Editor
         /// <summary>
         /// 后处理
         /// </summary>
-        protected virtual void PostBuild(string outputPath)
+        protected virtual void PostBuild(string outputPath, string[] bootScenes)
         {
         }
     }
