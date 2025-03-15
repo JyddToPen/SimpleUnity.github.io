@@ -19,13 +19,13 @@ namespace LearnLightMap.Scripts.Runtime
         {
             AssetLoadResult<GameObject> assetLoadResult = new AssetLoadResult<GameObject>();
             yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("LearnLightMap",
-                "assets.resources.learnlightmap.assetbundle", "Arch", ExtensionName.Prefab, assetLoadResult);
+                "assets.learnlightmap.prefabs.assetbundle", "Arch_Baked", ExtensionName.Prefab, assetLoadResult);
             GameObject bakedArch = assetLoadResult.AssetObject;
             if (!bakedArch) yield break;
             RecoveryLightMap(bakedArch.GetComponent<LightMapRecord>());
             GameObject bakedArchIns = GameObject.Instantiate<GameObject>(bakedArch);
             yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("LearnLightMap",
-                "assets.resources.learnlightmap.assetbundle", "ArchLitRealLight", ExtensionName.Prefab, assetLoadResult);
+                "assets.learnlightmap.prefabs.assetbundle", "Arch_RealtimeLight", ExtensionName.Prefab, assetLoadResult);
             GameObject realLightArch = assetLoadResult.AssetObject;
             if (realLightArch)
             {
@@ -61,11 +61,6 @@ namespace LearnLightMap.Scripts.Runtime
             {
                 Debug.Log($"lightmapData lightmapColor:{lightmapData.lightmapColor}");
             }
-#if UNITY_EDITOR
-            UnityEditor.Lightmapping.lightingDataAsset =
-                UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEditor.LightingDataAsset>(
-                    "Assets/Resources/LearnLightMap/Tex/LightingData.asset");
-#endif
         }
     }
 }

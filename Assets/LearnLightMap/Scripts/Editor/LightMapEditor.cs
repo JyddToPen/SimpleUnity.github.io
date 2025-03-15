@@ -12,7 +12,7 @@ namespace LearnLightMap.Scripts.Editor
         private static LightMapRecord _lightMapRecord;
         private const string LightMapRecordPath = "Assets/Resources/LearnLightMap/Arch.prefab";
 
-        [MenuItem("Assets/LightMap/Bake")]
+        // [MenuItem("Assets/LightMap/Bake")]
         private static void BuildWeChat()
         {
             _lightMapRecord = Object.FindObjectOfType<LightMapRecord>();

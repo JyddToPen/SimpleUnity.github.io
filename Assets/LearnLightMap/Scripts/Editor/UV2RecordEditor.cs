@@ -6,6 +6,11 @@ using UnityEngine;
 
 namespace LearnLightMap.Scripts.Editor
 {
+    /// <summary>
+    /// uv2记录可以解决unity2021产生的uv2数据和unity2022无法兼容的问题
+    /// 实现方法便是，如果该项目在unity2021中通过generate LightUv生成uv数据，并且用于烘焙光照贴图，那么当
+    /// 项目迁移到unity2022.3时会出现顶点数据错乱的问题，这是因为uv2的计算方式行了改变导致。
+    /// </summary>
     [CustomEditor(typeof(UV2Record))]
     public class UV2RecordEditor : UnityEditor.Editor
     {

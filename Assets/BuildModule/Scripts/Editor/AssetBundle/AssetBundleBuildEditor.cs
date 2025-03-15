@@ -21,7 +21,7 @@ namespace BuildModule.Scripts.Editor.AssetBundle
         /// <summary>
         /// 基于场景构建ab包
         /// </summary>
-        public static void BuildAssetBundleBasedOnScene(string scene,string rootFolder)
+        public static void BuildAssetBundleBasedOnScene(string scene, string rootFolder)
         {
             List<string> additional = new();
             if (string.IsNullOrEmpty(rootFolder))
@@ -60,7 +60,7 @@ namespace BuildModule.Scripts.Editor.AssetBundle
                 return;
             }
 
-            string outputPath = EditorAssetBundleUtility.AssetBundleOutput(rootFolder);
+            string outputPath = EditorAssetBundleUtility.AssetBundleOutput(masterAsset);
             if (!Directory.Exists(outputPath))
             {
                 Directory.CreateDirectory(outputPath);
@@ -80,7 +80,7 @@ namespace BuildModule.Scripts.Editor.AssetBundle
             })?.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression, EditorUserBuildSettings.activeBuildTarget);
             if (result)
             {
-                Debug.Log("Build AssetBundle succeeded!!!");
+                Debug.Log($"Build AssetBundle succeeded result:{AssetDatabase.GetAssetPath(result)}!!!");
                 AssetDatabase.Refresh();
             }
             else
@@ -138,6 +138,11 @@ namespace BuildModule.Scripts.Editor.AssetBundle
             }
 
             if (!assetUrl.StartsWith("Assets/") || assetUrl.EndsWith(".cs"))
+            {
+                return null;
+            }
+
+            if (AssetDatabase.IsValidFolder(assetUrl))
             {
                 return null;
             }
