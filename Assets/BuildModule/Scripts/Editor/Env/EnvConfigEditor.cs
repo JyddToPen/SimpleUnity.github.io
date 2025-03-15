@@ -15,6 +15,10 @@ namespace BuildModule.Scripts.Editor
         [InitializeOnLoadMethod]
         private static void Init()
         {
+            if (EnvConfig.Instance.runtimeTargets is {Length: > 0})
+            {
+                return;
+            }
             EnvConfig.Instance.runtimeTargets = Enum.GetNames(typeof(RuntimePlatform))
                 .Select(item => (RuntimePlatform)Enum.Parse(typeof(RuntimePlatform), item)).ToArray();
             EnvConfig.Instance.runtimeTargetNames =
@@ -31,6 +35,8 @@ namespace BuildModule.Scripts.Editor
                         break;
                 }
             }
+            EditorUtility.SetDirty(EnvConfig.Instance);
+            AssetDatabase.SaveAssetIfDirty(EnvConfig.Instance);
         }
 
         private void OnEnable()
