@@ -13,7 +13,7 @@ namespace BuildModule.Scripts.Editor
     {
         protected override string TargetFolder => "Player2Wx";
         protected override string CdnReadFilePath => $"{Application.dataPath}/../Library/WxCdn";
-        private string[] _selectScenes;
+        private EditorBuildSettingsScene[] _selectScenes;
 
         /// <summary>
         /// 导出前配置
@@ -39,9 +39,9 @@ namespace BuildModule.Scripts.Editor
                 (buildOptions & BuildOptions.Development) == BuildOptions.Development;
             WXConvertCore.config.CompileOptions.AutoProfile =
                 (buildOptions & BuildOptions.ConnectWithProfiler) == BuildOptions.ConnectWithProfiler;
-            _selectScenes = EditorSceneManager.GetSceneManagerSetup().Select(item => item.path).ToArray();
-            EditorSceneManager.RestoreSceneManagerSetup(bootScenes?.Select(item => new SceneSetup() { path = item })
-                .ToArray());
+            _selectScenes = EditorBuildSettings.scenes?.ToArray();
+            EditorBuildSettings.scenes = bootScenes?.Select(item => new EditorBuildSettingsScene(item, true))
+                .ToArray();
         }
 
         /// <summary>
@@ -86,8 +86,7 @@ namespace BuildModule.Scripts.Editor
                 WXConvertCore.config.ProjectConf.CDN = _beforeCdn;
             }
 
-            EditorSceneManager.RestoreSceneManagerSetup(_selectScenes?.Select(item => new SceneSetup() { path = item })
-                .ToArray());
+            EditorBuildSettings.scenes = _selectScenes?.ToArray();
             EditorUtility.SetDirty(WXConvertCore.config);
             AssetDatabase.SaveAssetIfDirty(WXConvertCore.config);
         }
