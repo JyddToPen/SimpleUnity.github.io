@@ -20,7 +20,7 @@ namespace LearnShader.Scripts.Runtime
         {
             AssetLoadResult<GameObject> assetLoadResult = new AssetLoadResult<GameObject>();
             yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("LearnShader",
-                "assets.resources.LearnShader.assetbundle", "Sphere", assetLoadResult);
+                "assets.resources.LearnShader.assetbundle", "Sphere", ExtensionName.Prefab, assetLoadResult);
             GameObject sphere = assetLoadResult.AssetObject;
             var sphereIns = GameObject.Instantiate(sphere);
             sphereIns.name = sphere.name;

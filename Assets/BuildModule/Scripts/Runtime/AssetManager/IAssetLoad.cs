@@ -16,9 +16,10 @@ namespace BuildModule.Scripts.Runtime.AssetManager
         /// <param name="rootFolder"></param>
         /// <param name="assetBundleName"></param>
         /// <param name="assetName"></param>
+        /// <param name="extension"></param>
         /// <param name="assetLoadResult"></param>
         /// <returns></returns>
-        IEnumerator AsyLoadAsset<T>(string rootFolder, string assetBundleName, string assetName,
+        IEnumerator AsyLoadAsset<T>(string rootFolder, string assetBundleName, string assetName, string extension,
             AssetLoadResult<T> assetLoadResult)
             where T : UnityEngine.Object;
     }

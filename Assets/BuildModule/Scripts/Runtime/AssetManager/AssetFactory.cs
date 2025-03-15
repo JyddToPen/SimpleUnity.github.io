@@ -9,6 +9,9 @@
             get
             {
                 if (_assetLoad != null) return _assetLoad;
+#if UNITY_EDITOR
+                _assetLoad = new EditorLoad();
+#else
                 if (EnvConfig.Instance.isAb)
                 {
                     _assetLoad = new AssetBundleLoad();
@@ -17,6 +20,7 @@
                 {
                     _assetLoad = new ResourcesLoad();
                 }
+#endif
 
                 return _assetLoad;
             }

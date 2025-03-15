@@ -18,7 +18,7 @@ namespace BuildModule.Scripts.Runtime
         {
             AssetLoadResult<GameObject> assetLoadResult = new AssetLoadResult<GameObject>();
             yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("BuildModule",
-                "assets.buildmodule.dependency1.assetbundle", "Cube1", assetLoadResult);
+                "assets.buildmodule.dependency1.assetbundle", "Cube1", ExtensionName.Prefab, assetLoadResult);
             GameObject cube = assetLoadResult.AssetObject;
             if (!cube) yield break;
             GameObject cubeIns = GameObject.Instantiate<GameObject>(cube);
@@ -28,7 +28,7 @@ namespace BuildModule.Scripts.Runtime
         {
             AssetLoadResult<GameObject> assetLoadResult = new AssetLoadResult<GameObject>();
             yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("BuildModule",
-                "assets.buildmodule.dependency2.assetbundle", "Cube2", assetLoadResult);
+                "assets.buildmodule.dependency2.assetbundle", "Cube2", ExtensionName.Prefab, assetLoadResult);
             GameObject cube = assetLoadResult.AssetObject;
             if (!cube) yield break;
             GameObject cubeIns = GameObject.Instantiate<GameObject>(cube);

@@ -19,13 +19,13 @@ namespace LearnLightMap.Scripts.Runtime
         {
             AssetLoadResult<GameObject> assetLoadResult = new AssetLoadResult<GameObject>();
             yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("LearnLightMap",
-                "assets.resources.learnlightmap.assetbundle", "Arch", assetLoadResult);
+                "assets.resources.learnlightmap.assetbundle", "Arch", ExtensionName.Prefab, assetLoadResult);
             GameObject bakedArch = assetLoadResult.AssetObject;
             if (!bakedArch) yield break;
             RecoveryLightMap(bakedArch.GetComponent<LightMapRecord>());
             GameObject bakedArchIns = GameObject.Instantiate<GameObject>(bakedArch);
             yield return AssetFactory.Instance.AssetLoad.AsyLoadAsset("LearnLightMap",
-                "assets.resources.learnlightmap.assetbundle", "ArchLitRealLight", assetLoadResult);
+                "assets.resources.learnlightmap.assetbundle", "ArchLitRealLight", ExtensionName.Prefab, assetLoadResult);
             GameObject realLightArch = assetLoadResult.AssetObject;
             if (realLightArch)
             {
