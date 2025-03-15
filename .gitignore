@@ -82,3 +82,4 @@ crashlytics-build.properties
 /Assets/Resources/BuildModule/EnvConfig.asset
 /Assets/Resources/BuildModule/EnvConfig.asset.meta
 /Player2Standalone/
+/Player2WebGl/
