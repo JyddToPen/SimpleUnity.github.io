@@ -26,7 +26,7 @@ namespace BuildModule.Scripts.Editor.AssetBundle
         /// <returns></returns>
         public static string AssetBundleOutput(string masterAsset)
         {
-            string platformName = EditorUserBuildSettings.selectedBuildTargetGroup.ToString().ToLower();
+            string platformName = EditorUserBuildSettings.selectedBuildTargetGroup.ToString();
 
             string outputPath =
                 $"{Application.streamingAssetsPath}/{platformName}/{GetRootFolder(masterAsset).ToLower()}";
