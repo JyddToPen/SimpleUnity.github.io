@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 2626299496
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 475546f20c6fb21bb62448b4acbb9533
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 17a3557cae3d0f9916dbe762213cf068
+HashAppended: 0
+ClassTypes:
+- Class: 72
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/LearnShader/Shader/ComputeShader.compute
+Dependencies: []

@@ -10,15 +10,15 @@ import checkVersion from './check-version';
 import { launchEventType, scaleMode } from './plugin-config';
 import { preloadWxCommonFont } from './unity-sdk/font/index';
 const managerConfig = {
-    DATA_FILE_MD5: '6506e15a9f1f90c5',
-    CODE_FILE_MD5: '74cd3a4f300c39d8',
+    DATA_FILE_MD5: '0f0af216c600ec9a',
+    CODE_FILE_MD5: 'ecdfe50ac24fadc5',
     GAME_NAME: 'webgl',
     APPID: 'wx1ddcbbc7dcef04f9',
-    DATA_FILE_SIZE: '6323366',
+    DATA_FILE_SIZE: '6385295',
     OPT_DATA_FILE_SIZE: '$OPT_DATA_FILE_SIZE',
-    DATA_CDN: 'http://192.168.1.212/ZombieFish/SimpleGame/Wx',
+    DATA_CDN: 'https://raw.githubusercontent.com/JyddToPen/SimpleUnity.github.io/refs/heads/main/webgl',
     // 资源包是否作为小游戏分包加载
-    loadDataPackageFromSubpackage: false,
+    loadDataPackageFromSubpackage: true,
     // 资源包放小游戏分包加载时，是否br压缩
     compressDataPackage: true,
     // 需要在网络空闲时预加载的资源，支持如下形式的路径

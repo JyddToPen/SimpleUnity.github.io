@@ -54,7 +54,7 @@ const unityNamespace = {
     // 是否以Development Build构建
     isDevelopmentBuild: false,
     // 是否以Profiling Build导出
-    isProfilingBuild: false,
+    isProfilingBuild: true,
     // 预留的堆内存
     unityHeapReservedMemory: 256,
 };

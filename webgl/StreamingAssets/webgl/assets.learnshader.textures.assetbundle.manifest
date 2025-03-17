@@ -1,0 +1,26 @@
+ManifestFileVersion: 0
+CRC: 3881206476
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 134426fd1745163a5171f6a62c8817d4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2d8df09e698f722ada1caa03d3413830
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/LearnShader/Textures/BumpMapColourMapStoneWallExample_Albedo.png
+- Assets/LearnShader/Textures/BumpMapHeightMapNormalMapComparison.jpg
+- Assets/LearnShader/Textures/BumpMapColourMapStoneWallExample_Normal.png
+- Assets/LearnShader/Textures/BumpMapColourMapStoneWallExample.jpg
+- Assets/LearnShader/Textures/Leaf.png
+- Assets/LearnShader/Textures/BumpMapHeightMapNormalMapComparison_Height.png
+- Assets/LearnShader/Textures/BumpMapTexturePreview.png
+- Assets/LearnShader/Textures/Enemy.png
+Dependencies: []

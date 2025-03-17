@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 551619202
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9b7daf48813ef286323b6fc5f2cef6df
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: b30fce1a9ad74efb72be6c308c56e365
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/LearnShader/Materials/NormalPlaneMaterial.mat
+- Assets/LearnShader/Materials/Specular.mat
+- Assets/LearnShader/Materials/NormalCylinderMaterial.mat
+- Assets/LearnShader/Materials/Leaf.mat
+Dependencies:
+- G:/Learn/SimpleUnity/Assets/StreamingAssets/webgl/assets.learnshader.textures.assetbundle

@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 3834519556
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: assets.buildmodule.shaders.urp.assetbundle
+      Dependencies: {}
+    Info_1:
+      Name: assets.buildmodule.dependency2.assetbundle
+      Dependencies:
+        Dependency_0: assets.buildmodule.shaders.urp.assetbundle
+        Dependency_1: assets.buildmodule.dependency1.assetbundle
+        Dependency_2: assets.buildmodule.materials2.assetbundle
+        Dependency_3: assets.buildmodule.materials3.assetbundle
+    Info_2:
+      Name: assets.buildmodule.dependency1.assetbundle
+      Dependencies:
+        Dependency_0: assets.buildmodule.shaders.urp.assetbundle
+        Dependency_1: assets.buildmodule.dependency2.assetbundle
+        Dependency_2: assets.buildmodule.materials1.assetbundle
+        Dependency_3: assets.buildmodule.materials2.assetbundle
+        Dependency_4: assets.buildmodule.materials3.assetbundle
+    Info_3:
+      Name: assets.buildmodule.materials1.assetbundle
+      Dependencies:
+        Dependency_0: assets.buildmodule.shaders.urp.assetbundle
+    Info_4:
+      Name: assets.buildmodule.materials2.assetbundle
+      Dependencies: {}
+    Info_5:
+      Name: assets.buildmodule.materials3.assetbundle
+      Dependencies:
+        Dependency_0: assets.buildmodule.shaders.urp.assetbundle
