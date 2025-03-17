@@ -16,7 +16,7 @@ MonoBehaviour:
     projectName: SimleGame
     Appid: wx1ddcbbc7dcef04f9
     CDN: https://raw.githubusercontent.com/JyddToPen/SimpleUnity.github.io/refs/heads/main/webgl
-    assetLoadType: 1
+    assetLoadType: 0
     compressDataPackage: 1
     VideoUrl: 
     DST: G:\Learn\SimpleUnity\
@@ -47,7 +47,7 @@ MonoBehaviour:
     PreloadWXFont: 0
   CompileOptions:
     DevelopBuild: 1
-    AutoProfile: 0
+    AutoProfile: 1
     ScriptOnly: 0
     Il2CppOptimizeSize: 1
     profilingFuncs: 1

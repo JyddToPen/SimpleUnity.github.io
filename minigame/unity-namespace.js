@@ -52,7 +52,7 @@ const unityNamespace = {
     // Boot config配置，包含例如wait-for-native-debugger、player-connection-ip等信息
     bootConfig: 'player-connection-ip=10.10.16.76',
     // 是否以Development Build构建
-    isDevelopmentBuild: false,
+    isDevelopmentBuild: true,
     // 是否以Profiling Build导出
     isProfilingBuild: true,
     // 预留的堆内存
