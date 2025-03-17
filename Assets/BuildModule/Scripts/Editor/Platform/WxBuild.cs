@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
+using BaseLib.Scripts.Runtime;
 using UnityEditor;
 using UnityEditor.Build;
 using UnityEditor.SceneManagement;
@@ -54,13 +55,7 @@ namespace BuildModule.Scripts.Editor
                 return;
             }
 
-            string[] dataFiles =
-                Directory.GetFiles($"{Application.dataPath}/../{WXConvertCore.webglDir}",
-                    "*.webgl.data.unityweb.bin.br");
-            if (dataFiles.Length > 0)
-            {
-                File.Copy(dataFiles[0], $"{LocalCdnPhysicalPath}/{Path.GetFileName(dataFiles[0])}", true);
-            }
+            FileUtility.CopyFolder($"{Application.dataPath}/../{WXConvertCore.webglDir}", LocalCdnPhysicalPath);
 
             Debug.Log("微信构建的data资源已经上传至共享盘！");
         }
