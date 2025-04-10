@@ -89,15 +89,15 @@ namespace BuildModule.Scripts.Editor
             _sEnvConfig.Update();
             EditorGUILayout.PropertyField(_sIsAb);
             _sEnvConfig.ApplyModifiedProperties();
-            switch (EditorUserBuildSettings.activeBuildTarget)
+            switch (EditorUserBuildSettings.selectedBuildTargetGroup)
             {
-                case BuildTarget.WebGL:
+                case BuildTargetGroup.WebGL:
                 {
                     GUIPlatformBuild<WxBuild>("微信小游戏");
                     GUIPlatformBuild<WebGlBuild>("webGl");
                 }
                     break;
-                case BuildTarget.StandaloneWindows:
+                case BuildTargetGroup.Standalone:
                 {
                     GUIPlatformBuild<StandaloneBuild>("单机");
                 }
