@@ -7,7 +7,7 @@ namespace BaseLib.Scripts.Runtime.URP
     [ExecuteAlways]
     public class UrpEnvSwitch : MonoBehaviour
     {
-        [SerializeField] private UniversalRenderPipelineAsset m_PipelineAsset;
+        [SerializeField] public UniversalRenderPipelineAsset m_PipelineAsset;
         private RenderPipelineAsset m_PreviousPipelineAsset;
         private bool m_overrodeQualitySettings;
 

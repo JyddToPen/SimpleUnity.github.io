@@ -75,7 +75,9 @@ namespace BuildModule.Scripts.Editor
             _sIsAb = _sEnvConfig.FindProperty(nameof(EnvConfig.isAb));
             _bootScene = new Queue<string>();
             _sceneData = AssetDatabase.GetAllAssetPaths()
-                .Where(item => item.EndsWith(".unity") && item.StartsWith("Assets/")).OrderBy(item => item).Select(
+                .Where(item =>
+                    item.EndsWith(".unity") && item.StartsWith("Assets/") && !item.StartsWith("Assets/LearnTemplate") &&
+                    !item.StartsWith("Assets/Samples/")).OrderBy(item => item).Select(
                     (item, index) =>
                     {
                         var sceneData = new SceneData(item, false, index);
